@@ -16,3 +16,14 @@
   template:
     src: javaservice.j2
     dest: /etc/systemd/system/{{ app_name }}.service
+
+- name: Enable java app at boot level
+  systemd:
+    name: "{{ app_name }}"
+    enabled: yes
+
+- name: deamon reload
+  systemd:
+    name: "{{ app_name }}"
+    daemon_reload: true
+    state: restarted
