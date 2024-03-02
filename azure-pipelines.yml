@@ -1,0 +1,23 @@
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      pwd
+      ls -l
+- task: Bash@3
+  displayName: "check ansible code syntax"
+  inputs:
+    targetType: 'inline'
+    script: 'ansible-playbook myplay.yaml --syntax-check'
+- task: Bash@3
+  displayName: "ansible dry run"
+  inputs:
+    targetType: 'inline'
+    script: 'ansible-playbook myplay.yaml -C'
