@@ -6,6 +6,12 @@ pool:
 
 steps:
 - task: Bash@3
+  displayName: "check ansible code syntax"
   inputs:
     targetType: 'inline'
-    script: 'ansible --version'
+    script: 'ansible-playbook myplay.yaml --syntax-check'
+- task: Bash@3
+  displayName: "ansible dry run"
+  inputs:
+    targetType: 'inline'
+    script: 'ansible-playbook myplay.yaml -C'
