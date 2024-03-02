@@ -2,22 +2,19 @@ trigger:
 - none
 
 pool:
-  vmImage: ubuntu-latest
+  name: batch3-cicd-pool
+  vmImage: ansiblecicd
 
 steps:
 - task: Bash@3
+  displayName: "Ansible syntax check"
   inputs:
     targetType: 'inline'
-    script: |
-      pwd
-      ls -l
+    script: 'ansible-playbook -i hosts myplay.yaml --syntax-check'
+    failOnStderr: true
 - task: Bash@3
-  displayName: "check ansible code syntax"
+  displayName: "Ansible dry run "
   inputs:
     targetType: 'inline'
-    script: 'ansible-playbook myplay.yaml --syntax-check'
-- task: Bash@3
-  displayName: "ansible dry run"
-  inputs:
-    targetType: 'inline'
-    script: 'ansible-playbook myplay.yaml -C'
+    script: 'ansible-playbook -i hosts myplay.yaml -C'
+    failOnStderr: true
