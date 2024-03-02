@@ -8,6 +8,6 @@ steps:
 - task: Ansible@0
   inputs:
     ansibleInterface: 'agentMachine'
-    playbookPathOnAgentMachine: 'myplay.yaml'
+    playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/ansiblecicd/myplay.yaml'
     inventoriesAgentMachine: 'file'
-    inventoryFileOnAgentMachine: 'hosts'
+    inventoryFileOnAgentMachine: '$(System.DefaultWorkingDirectory)/ansiblecicd/hosts'
