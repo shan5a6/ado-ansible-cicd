@@ -22,5 +22,5 @@ steps:
   displayName: "Ansible dry run "
   inputs:
     targetType: 'inline'
-    script: 'ansible-playbook -i hosts myplay.yaml -C'
+    script: 'ansible-playbook -i hosts myplay.yaml'
     failOnStderr: true
