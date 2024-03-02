@@ -5,19 +5,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Bash@3
+- task: Ansible@0
   inputs:
-    targetType: 'inline'
-    script: |
-      pwd
-      ls -l
-- task: Bash@3
-  displayName: "check ansible code syntax"
-  inputs:
-    targetType: 'inline'
-    script: 'ansible-playbook -i hosts myplay.yaml --syntax-check'
-- task: Bash@3
-  displayName: "ansible dry run"
-  inputs:
-    targetType: 'inline'
-    script: 'ansible-playbook -i hosts myplay.yaml -C'
+    ansibleInterface: 'remoteMachine'
+    connectionOverSsh: 'remoteansiblelogin'
+    playbookSourceRemoteMachine: 'agentMachine'
+    playbookRootRemoteMachine: '$(System.DefaultWorkingDirectory)'
+    playbookPathLinkedArtifactOnRemoteMachine: 'myplay.yaml'
+    inventoriesRemoteMachine: 'file'
+    inventoryFileSourceRemoteMachine: 'agentMachine'
+    inventoryFileLinkedArtifactOnRemoteMachine: 'hosts'
