@@ -22,11 +22,11 @@ steps:
   displayName: "Ansible syntax check"
   inputs:
     targetType: 'inline'
-    script: 'ansible-playbook -i hosts myplay.yaml -e "env=${env}" --syntax-check'
+    script: 'ansible-playbook -i hosts myplay.yaml -e env=${env} --syntax-check'
     failOnStderr: true
 - task: Bash@3
   displayName: "Ansible dry run "
   inputs:
     targetType: 'inline'
-    script: 'ansible-playbook -i hosts myplay.yaml -e "env=${env}" -C -v'
+    script: 'ansible-playbook -i hosts myplay.yaml -e env=${env} -C -v'
     failOnStderr: true
