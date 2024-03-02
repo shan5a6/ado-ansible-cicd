@@ -1,6 +1,6 @@
 ---
 - name: working with ansible 
-  hosts: all
+  hosts: "{{ env }}"
   gather_facts: false
   tasks:
     - name: checking ansible run 

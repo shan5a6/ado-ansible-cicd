@@ -7,6 +7,12 @@ pool:
 
 steps:
 - task: Bash@3
+  displayName: "Collect environment details"
+  inputs:
+    targetType: 'inline'
+    script: 'echo "##vso[task.setvariable variable=env]$(cat environment_to_deploy.json|awk -F'': '' ''/env/{print $2}''|sed ''s/"//g'')"'
+
+- task: Bash@3
   displayName: "change key permissions"
   inputs:
     targetType: 'inline'
@@ -16,11 +22,11 @@ steps:
   displayName: "Ansible syntax check"
   inputs:
     targetType: 'inline'
-    script: 'ansible-playbook -i hosts myplay.yaml --syntax-check'
+    script: 'ansible-playbook -i hosts myplay.yaml -e "env=${env}" --syntax-check'
     failOnStderr: true
 - task: Bash@3
   displayName: "Ansible dry run "
   inputs:
     targetType: 'inline'
-    script: 'ansible-playbook -i hosts myplay.yaml -C -v'
+    script: 'ansible-playbook -i hosts myplay.yaml -e "env=${env}" -C -v'
     failOnStderr: true
