@@ -10,7 +10,7 @@ steps:
     ansibleInterface: 'remoteMachine'
     connectionOverSsh: 'remoteansiblelogin'
     playbookSourceRemoteMachine: 'agentMachine'
-    playbookRootRemoteMachine: '$(System.DefaultWorkingDirectory)'
+    playbookRootRemoteMachine: '$(System.DefaultWorkingDirectory)/ansiblecicd'
     playbookPathLinkedArtifactOnRemoteMachine: 'myplay.yaml'
     inventoriesRemoteMachine: 'file'
     inventoryFileSourceRemoteMachine: 'agentMachine'
