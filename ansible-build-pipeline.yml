@@ -1,0 +1,26 @@
+trigger:
+- master
+
+pool:
+  name: batch3-cicd-pool
+  vmImage: ansiblecicd
+
+steps:
+- task: Bash@3
+  displayName: "Collect environment details"
+  inputs:
+    targetType: 'inline'
+    script: 'echo "##vso[task.setvariable variable=env]$(cat environment_to_deploy.json|awk -F'': '' ''/env/{print $2}''|sed ''s/"//g'')"'
+
+- task: Bash@3
+  displayName: "change key permissions"
+  inputs:
+    targetType: 'inline'
+    script: 'chmod 600 mykey.pem'
+    failOnStderr: true
+- task: Bash@3
+  displayName: "Execute ansible playbook"
+  inputs:
+    targetType: 'inline'
+    script: 'ansible-playbook -i hosts myplay.yaml -e env=$(env)'
+    failOnStderr: true
