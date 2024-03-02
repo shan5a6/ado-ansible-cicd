@@ -1,7 +1,8 @@
 ---
-- name: working with ansible 
+- name: Configuring java infrastructure
   hosts: "{{ env }}"
-  gather_facts: false
-  tasks:
-    - name: checking ansible run 
-      command: uname -a
+  vars:
+    app_name: "app1-java"
+    app_path: "/opt/{{ app_name }}"
+  roles:
+    - java-infra
