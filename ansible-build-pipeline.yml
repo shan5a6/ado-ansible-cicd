@@ -22,5 +22,5 @@ steps:
   displayName: "Execute ansible playbook"
   inputs:
     targetType: 'inline'
-    script: 'ansible-playbook -i hosts myplay.yaml -e env=$(env) -v'
+    script: 'ansible-playbook -i hosts java-infra.yaml -e env=$(env) -v'
     failOnStderr: true

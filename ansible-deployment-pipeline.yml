@@ -1,0 +1,29 @@
+trigger:
+- none
+
+pool:
+  name: batch3-cicd-pool
+  vmImage: ansiblecicd
+
+parameters:
+  - name: ENV
+    type: string 
+    default: "dev"
+    values:
+      - dev
+      - prod
+
+steps:
+- task: Bash@3
+  displayName: "change key permissions"
+  inputs:
+    targetType: 'inline'
+    script: 'chmod 600 mykey.pem'
+    failOnStderr: true
+
+- task: Bash@3
+  displayName: "Execute ansible playbook"
+  inputs:
+    targetType: 'inline'
+    script: 'ansible-playbook -i hosts java-infra.yaml -e env=${{ parameters.ENV}} -v'
+    failOnStderr: true
