@@ -6,6 +6,12 @@ pool:
 
 steps:
 - task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      pwd
+      ls -l
+- task: Bash@3
   displayName: "check ansible code syntax"
   inputs:
     targetType: 'inline'
