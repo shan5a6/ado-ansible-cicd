@@ -5,9 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Ansible@0
+- task: Bash@3
   inputs:
-    ansibleInterface: 'agentMachine'
-    playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/ansiblecicd/myplay.yaml'
-    inventoriesAgentMachine: 'file'
-    inventoryFileOnAgentMachine: '$(System.DefaultWorkingDirectory)/ansiblecicd/hosts'
+    targetType: 'inline'
+    script: 'ansible --version'
