@@ -2,15 +2,19 @@ trigger:
 - none
 
 pool:
-  vmImage: ubuntu-latest
+  name: batch3-cicd-pool
+  vmImage: ansiblecicd
 
 steps:
-- task: Ansible@0
+- task: Bash@3
+  displayName: "Ansible syntax check"
   inputs:
-    ansibleInterface: 'remoteMachine'
-    connectionOverSsh: 'remoteansiblelogin'
-    playbookSourceRemoteMachine: 'ansibleMachine'
-    playbookPathAnsibleMachineOnRemoteMachine: '$(System.DefaultWorkingDirectory)/ansiblecicd/myplay.yaml'
-    inventoriesRemoteMachine: 'file'
-    inventoryFileSourceRemoteMachine: 'ansibleMachine'
-    inventoryFileAnsibleMachineOnRemoteMachine: '$(System.DefaultWorkingDirectory)/ansiblecicd/hosts'
+    targetType: 'inline'
+    script: 'ansible-play -i hosts myplay.yaml --syntax-check'
+    failOnStderr: true
+- task: Bash@3
+  displayName: "Ansible dry run "
+  inputs:
+    targetType: 'inline'
+    script: 'ansible-play -i hosts myplay.yaml -C'
+    failOnStderr: true
