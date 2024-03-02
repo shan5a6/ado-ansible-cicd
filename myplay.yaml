@@ -1,6 +1,7 @@
 ---
 - name: working with ansible 
   hosts: all
+  gather_facts: false
   tasks:
     - name: checking ansible run 
       command: uname -a
