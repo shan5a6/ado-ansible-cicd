@@ -1,6 +1,6 @@
 ---
 - name: working with ansible 
-  hosts: dev
+  hosts: all
   tasks:
     - name: checking ansible run 
       command: uname -a
