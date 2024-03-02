@@ -1,0 +1,18 @@
+---
+- name: Installing java
+  yum:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - "java-11"
+    - "git"
+
+- name: Create application folder
+  file:
+    path: "{{ app_path }}"
+    state: directory
+
+- name: Configure java app service
+  template:
+    src: javaservice.j2
+    dest: /etc/systemd/system/{{ app_name }}.service
