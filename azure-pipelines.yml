@@ -15,9 +15,9 @@ steps:
   displayName: "check ansible code syntax"
   inputs:
     targetType: 'inline'
-    script: 'ansible-playbook myplay.yaml --syntax-check'
+    script: 'ansible-playbook -i hosts myplay.yaml --syntax-check'
 - task: Bash@3
   displayName: "ansible dry run"
   inputs:
     targetType: 'inline'
-    script: 'ansible-playbook myplay.yaml -C'
+    script: 'ansible-playbook -i hosts myplay.yaml -C'
