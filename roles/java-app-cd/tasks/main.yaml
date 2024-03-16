@@ -2,11 +2,11 @@
 - name: copy file from local to the remote server 
   copy:
     src: /tmp/app.jar
-    dest: {{ app_path }}
+    dest: "{{ app_path }}"
   register: artifact_deploy_status
 
 - name: Restart application 
   systemd:
-    name: {{ app_name }}
+    name: "{{ app_name }}"
     state: restarted
   when: artifact_deploy_status.changed
