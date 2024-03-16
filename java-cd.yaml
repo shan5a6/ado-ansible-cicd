@@ -1,0 +1,5 @@
+---
+- name: Deploy java application
+  hosts: "{{ env }}"
+  roles:
+    - java-app-cd

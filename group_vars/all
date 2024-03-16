@@ -1,0 +1,5 @@
+---
+# Configuring java variables
+
+app_name: "app1-java"
+app_path: "/opt/{{ app_name }}"
