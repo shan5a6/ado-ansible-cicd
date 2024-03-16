@@ -24,6 +24,13 @@ steps:
     vstsPackageVersion: '${{ parameters.version }}'
 
 - task: Bash@3
+  displayName: "change key permissions"
+  inputs:
+    targetType: 'inline'
+    script: 'chmod 600 mykey.pem'
+    failOnStderr: true
+    
+- task: Bash@3
   displayName: "Execute ansible playbook"
   inputs:
     targetType: 'inline'
