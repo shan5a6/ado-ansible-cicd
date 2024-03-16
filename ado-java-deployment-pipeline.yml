@@ -11,7 +11,8 @@ parameters:
       - dev
       - prod 
 pool:
-  vmImage: ubuntu-latest
+  name: batch3-cicd-pool
+  vmImage: ansiblecicd
 
 steps:
 - task: UniversalPackages@0
@@ -29,7 +30,7 @@ steps:
     targetType: 'inline'
     script: 'chmod 600 mykey.pem'
     failOnStderr: true
-    
+
 - task: Bash@3
   displayName: "Execute ansible playbook"
   inputs:
