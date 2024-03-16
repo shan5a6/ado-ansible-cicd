@@ -4,15 +4,12 @@ parameters:
   - name: version
     type: string 
     default: "1.0.0"
-<<<<<<< HEAD
   - name: ENV
     type: string 
     default: "dev"
     values:
       - dev
       - prod 
-=======
->>>>>>> 43dd05d3b81c1a663dbeec8e058303b005c9ef6a
 pool:
   vmImage: ubuntu-latest
 
