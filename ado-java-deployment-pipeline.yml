@@ -4,12 +4,15 @@ parameters:
   - name: version
     type: string 
     default: "1.0.0"
+<<<<<<< HEAD
   - name: ENV
     type: string 
     default: "dev"
     values:
       - dev
       - prod 
+=======
+>>>>>>> 43dd05d3b81c1a663dbeec8e058303b005c9ef6a
 pool:
   vmImage: ubuntu-latest
 
@@ -22,6 +25,7 @@ steps:
     vstsFeed: '25977150-2660-41de-841f-34737f921521'
     vstsFeedPackage: 'edb83bd9-f511-4ada-89af-488eca0f2e05'
     vstsPackageVersion: '${{ parameters.version }}'
+
 - task: Bash@3
   displayName: "Execute ansible playbook"
   inputs:
