@@ -1,0 +1,30 @@
+trigger:
+- none
+parameters:
+  - name: version
+    type: string 
+    default: "1.0.0"
+  - name: ENV
+    type: string 
+    default: "dev"
+    values:
+      - dev
+      - prod 
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: UniversalPackages@0
+  inputs:
+    command: 'download'
+    downloadDirectory: '/tmp/'
+    feedsToUse: 'internal'
+    vstsFeed: '25977150-2660-41de-841f-34737f921521'
+    vstsFeedPackage: 'edb83bd9-f511-4ada-89af-488eca0f2e05'
+    vstsPackageVersion: '${{ parameters.version }}'
+- task: Bash@3
+  displayName: "Execute ansible playbook"
+  inputs:
+    targetType: 'inline'
+    script: 'ansible-playbook -i hosts java-cd.yaml -e env=${{ parameters.ENV}} -v'
+    failOnStderr: true

@@ -1,8 +1,5 @@
 ---
 - name: Configuring java infrastructure
   hosts: "{{ env }}"
-  vars:
-    app_name: "app1-java"
-    app_path: "/opt/{{ app_name }}"
   roles:
     - java-infra

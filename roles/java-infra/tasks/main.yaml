@@ -22,6 +22,8 @@
   systemd:
     name: "{{ app_name }}"
     enabled: yes
+  when: app_service_status.changed
+  ignore_errors: true
 
 - name: deamon reload
   systemd:
@@ -29,3 +31,4 @@
     daemon_reload: true
     state: restarted
   when: app_service_status.changed
+  ignore_errors: true
