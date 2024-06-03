@@ -1,9 +1,9 @@
 trigger:
-- none
+- master
 
 pool:
-  name: batch3-cicd-pool
-  vmImage: ansiblecicd
+  name: javaapp-cicd-pool
+  vmImage: workstation
 
 steps:
 - task: Bash@3
