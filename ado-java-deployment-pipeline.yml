@@ -11,8 +11,8 @@ parameters:
       - dev
       - prod 
 pool:
-  name: batch3-cicd-pool
-  vmImage: ansiblecicd
+  name: javaapp-cicd-pool
+  vmImage: workstation
 
 steps:
 - task: UniversalPackages@0
