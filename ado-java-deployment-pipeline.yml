@@ -11,18 +11,17 @@ parameters:
       - dev
       - prod 
 pool:
-  name: javaapp-cicd-pool
-  vmImage: workstation
+  name: "MCDAI-B1-POOL"
+  vmImage: "workstation"
 
 steps:
-- task: UniversalPackages@0
+- task: UniversalPackages@1
   inputs:
     command: 'download'
-    downloadDirectory: '/tmp/'
-    feedsToUse: 'internal'
-    vstsFeed: '25977150-2660-41de-841f-34737f921521'
-    vstsFeedPackage: 'edb83bd9-f511-4ada-89af-488eca0f2e05'
-    vstsPackageVersion: '${{ parameters.version }}'
+    feed: 'mcdaib1/myapp-artifacts'
+    packageName: 'javaspringboot'
+    packageVersion: '${{ parameters.version }}'
+    directory: '$(System.DefaultWorkingDirectory)'
 
 - task: Bash@3
   displayName: "change key permissions"
