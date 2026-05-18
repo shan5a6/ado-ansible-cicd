@@ -21,13 +21,13 @@ steps:
     feed: 'mcdaib1/myapp-artifacts'
     packageName: 'javaspringboot'
     packageVersion: '${{ parameters.version }}'
-    directory: '/tmp'
+    directory: '$(System.DefaultWorkingDirectory)'
 - task: Bash@3
   inputs:
     targetType: 'inline'
     script: |
       # Write your commands here
-      ls -l /tmp/
+      ls -l 
 
 - task: Bash@3
   displayName: "change key permissions"
