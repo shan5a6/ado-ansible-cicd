@@ -21,7 +21,7 @@ steps:
     feed: 'mcdaib1/myapp-artifacts'
     packageName: 'javaspringboot'
     packageVersion: '${{ parameters.version }}'
-    directory: '$(System.DefaultWorkingDirectory)'
+    directory: '/tmp'
 
 - task: Bash@3
   displayName: "change key permissions"
