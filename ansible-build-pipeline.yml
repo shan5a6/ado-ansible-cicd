@@ -2,8 +2,8 @@ trigger:
 - master
 
 pool:
-  name: javaapp-cicd-pool
-  vmImage: workstation
+  name: "MCDAI-B1-POOL"
+  vmImage: 'workstation'
 
 steps:
 - task: Bash@3

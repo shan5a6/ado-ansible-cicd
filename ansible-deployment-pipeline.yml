@@ -2,8 +2,8 @@ trigger:
 - none
 
 pool:
-  name: javaapp-cicd-pool
-  vmImage: workstation
+  name: "MCDAI-B1-POOL"
+  vmImage: 'workstation'
 
 parameters:
   - name: ENV
