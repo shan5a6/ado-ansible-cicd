@@ -4,7 +4,7 @@
     name: "{{ item }}"
     state: latest
   loop:
-    - "java-11"
+    - "java"
     - "git"
 
 - name: Create application folder
